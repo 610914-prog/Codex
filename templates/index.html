@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azure AI Agent Builder</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Azure AI Agent Builder</h1>
+    <p>Create AI agents and generate Azure Container Apps deployment commands.</p>
+
+    <section class="card">
+      <h2>Create Agent</h2>
+      <form id="agent-form">
+        <label>Name <input required name="name" placeholder="Customer Support Agent" /></label>
+        <label>Model <input required name="model" value="gpt-4o-mini" /></label>
+        <label>System Prompt
+          <textarea required name="system_prompt" rows="5" placeholder="You are a helpful support AI..."></textarea>
+        </label>
+        <button type="submit">Create Agent</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Deploy Agent</h2>
+      <form id="deploy-form">
+        <label>Agent ID <input required type="number" name="agent_id" min="1" /></label>
+        <label>Resource Group <input required name="resource_group" placeholder="rg-agents" /></label>
+        <label>Location <input required name="location" value="eastus" /></label>
+        <label>Container App Environment <input required name="container_app_environment" placeholder="agents-env" /></label>
+        <label>Container App Name <input required name="container_app_name" placeholder="support-agent-app" /></label>
+        <label>Image Name <input required name="image_name" value="myacr.azurecr.io/azure-agent:latest" /></label>
+        <label><input type="checkbox" name="dry_run" checked /> Dry run only</label>
+        <button type="submit">Deploy</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Existing Agents</h2>
+      <button id="refresh">Refresh List</button>
+      <pre id="agents"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Result</h2>
+      <pre id="result"></pre>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
